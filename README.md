@@ -1,5 +1,13 @@
 # TpPlayerManager
 
+Demo de l'applicationss
+
+![Demo de l\'application](./repoAssets/demo.png)
+
+
+![Video demo de l\'application](./repoAssets/demo.mp4)
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.5.
 
 ## Development server
