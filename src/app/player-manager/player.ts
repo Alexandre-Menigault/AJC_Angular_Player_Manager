@@ -1,5 +1,5 @@
 export type Player = {
-  id : string,
+  id? : string,
   firstname: string,
   lastname: string,
   teamid: number,

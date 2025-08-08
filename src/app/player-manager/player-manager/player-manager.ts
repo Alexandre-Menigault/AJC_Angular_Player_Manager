@@ -34,6 +34,21 @@ export class PlayerManager {
     this.updatePlayers()
   }
 
+  onAddedPlayer(player: Player) {
+    this.playerManagerService.addPlayer(player).subscribe({
+      next: (player) => {
+        console.log("Player added", player)
+        this.players.push(player)
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {
+        console.log("complete");
+      }
+    })
+  }
+
   private updatePlayers() {
     this.playerManagerService.getAllPlayers(this.teamid, this.position).subscribe({
       next: (players) => {

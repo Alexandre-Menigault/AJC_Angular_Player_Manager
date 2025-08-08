@@ -6,6 +6,7 @@ import { PositionFilter } from './position-filter/position-filter';
 import { PlayerList } from './player-list/player-list';
 import { PlayerForm } from './player-form/player-form';
 import { PlayerCard } from './player-card/player-card';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -19,7 +20,7 @@ import { PlayerCard } from './player-card/player-card';
     PlayerCard
   ],
   imports: [
-    CommonModule
+    CommonModule, ReactiveFormsModule
   ],
   exports: [
     PlayerManager

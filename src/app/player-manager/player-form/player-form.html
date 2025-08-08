@@ -1,1 +1,36 @@
-<p>player-form works!</p>
+<div class="player-form-container">
+  <h3>Ajouter ou modifier un joueur</h3>
+
+  <form class="playerForm" [formGroup]="playerForm">
+    <div>
+      <label for="lastname">Nom</label>
+      <input type="text" id="lastname" formControlName="lastname">
+    </div>
+    <div>
+      <label for="firstname">Prénom</label>
+      <input type="text" id="firstname" formControlName="firstname">
+    </div>
+    <div>
+      <label for="age">Age</label>
+      <input type="number" id="age" formControlName="age">
+    </div>
+    <div>
+      <label for="teamid">Equipe</label>
+      <input type="number" id="teamid" formControlName="teamid">
+    </div>
+    <div>
+      <label for="position">Role</label>
+      <select id="position" formControlName="position">
+        <option value="attaquant">Attaquant</option>
+        <option value="défenseur">Défenseur</option>
+        <option value="milieu">Milieu</option>
+
+      </select>
+    </div>
+    @if (player) {
+      <button (click)="updatePlayer()" [disabled]="!playerForm.valid">Modifier</button>
+    } @else {
+      <button (click)="newPlayer()" [disabled]="!playerForm.valid">Ajouter</button>
+    }
+  </form>
+</div>
