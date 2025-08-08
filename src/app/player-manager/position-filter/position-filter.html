@@ -1,0 +1,7 @@
+<h3>Filter les roles</h3>
+<select (change)="onPositionChange($event)">
+  <option value="" selected>Tous</option>
+  @for (position of positions; track position) {
+    <option value="{{position}}">{{position | titlecase}}</option>
+  }
+</select>

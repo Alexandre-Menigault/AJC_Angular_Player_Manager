@@ -1,0 +1,7 @@
+<h2>Liste des Joueurs</h2>
+
+<div class="player-list">
+  @for (player of players; track player.id) {
+  <pm-player-card [player]="player"></pm-player-card>
+  }
+</div>

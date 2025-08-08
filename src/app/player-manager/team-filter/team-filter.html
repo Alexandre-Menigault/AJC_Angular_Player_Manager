@@ -1,0 +1,7 @@
+<h3>Filter les roles</h3>
+<select (change)="onTeamChange($event)">
+  <option value="" selected>Tous</option>
+  @for (teamid of teams; track teamid) {
+    <option value="{{teamid}}">Equipe: {{teamid}}</option>
+  }
+</select>

@@ -1,0 +1,12 @@
+<h1>Player Manager</h1>
+<div class="container">
+  <div class="left-grid">
+    <div class="filters">
+      <pm-team-filter (teamsChangedEvent)="onTeamChangedEvent($event)" [teams]="teams"></pm-team-filter>
+      <pm-position-filter (positionChangedEvent)="onPositionChanged($event)" [positions]="positions" ></pm-position-filter>
+    </div>
+
+    <pm-player-list [players]="players"></pm-player-list>
+  </div>
+  <pm-player-form></pm-player-form>
+</div>
