@@ -8,5 +8,9 @@
 
     <pm-player-list [players]="players"></pm-player-list>
   </div>
-  <pm-player-form (playerAddedEvent)="onAddedPlayer($event)"></pm-player-form>
+  <pm-player-form
+    (playerAddedEvent)="onAddedPlayer($event)"
+    (playerUpdatedEvent)="onUpdatedPlayer($event)">
+
+  </pm-player-form>
 </div>

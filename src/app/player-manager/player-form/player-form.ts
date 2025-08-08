@@ -1,6 +1,7 @@
 import {Component, output} from '@angular/core';
 import {FormControl, FormGroup, isFormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Player} from '../player';
+import {PlayerManagerEvents} from '../player-manager-events';
 
 @Component({
   selector: 'pm-player-form',
@@ -23,6 +24,21 @@ export class PlayerForm {
     position: new FormControl(this.player?.position ?? '', [Validators.required]),
   })
 
+  constructor(
+    private playerManagerEventService: PlayerManagerEvents,
+  ) {
+
+  }
+
+  ngOnInit() {
+    this.playerManagerEventService.event$.subscribe(event => {
+      if(event.type === "updatePlayer") {
+        this.player = event.player
+        this.playerForm.patchValue(this.player)
+      }
+    })
+  }
+
   newPlayer(){
     const player: Player = {
      lastname: this.playerForm.get('lastname')?.value,
@@ -36,6 +52,7 @@ export class PlayerForm {
     this.playerAddedEvent.emit(player)
     this.player = null;
     this.playerForm.reset();
+
 
   }
 

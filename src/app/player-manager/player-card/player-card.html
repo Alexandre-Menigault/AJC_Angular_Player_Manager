@@ -4,7 +4,7 @@
     <p>Poste: {{ player.position }}, Equipe: {{ player.teamid }}</p>
   </div>
   <div class="player-buttons">
-    <button>Editer</button>
-    <button>Supprimer</button>
+    <button (click)="onEditButtonClick()">Editer</button>
+    <button (click)="onDeleteButtonClick()">Supprimer</button>
   </div>
 </div>

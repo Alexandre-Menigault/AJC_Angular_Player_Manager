@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Player, Position} from '../player';
 import {PlayerManagerService} from '../player-manager-service';
+import {PlayerManagerEvents} from '../player-manager-events';
 
 @Component({
   selector: 'pm-player-manager',
@@ -17,11 +18,20 @@ export class PlayerManager {
   teams: number[] = []
   positions: Position[] = []
 
-  constructor(private playerManagerService: PlayerManagerService) {
+  constructor(
+    private playerManagerService: PlayerManagerService,
+    private playerManagerEvents: PlayerManagerEvents) {
   }
 
   ngOnInit() {
     this.updatePlayers()
+
+    this.playerManagerEvents.event$.subscribe(event => {
+      if(event.type === "deletePlayer") {
+        this.deletePlayer(event.player)
+      }
+    })
+
   }
 
   onPositionChanged(position: Position | null) {
@@ -49,6 +59,18 @@ export class PlayerManager {
     })
   }
 
+  onUpdatedPlayer(player: Player) {
+    this.playerManagerService.updatePlayer(player).subscribe({
+      next: (player) => {
+        console.log("Player updated", player)
+        this.updatePlayers()
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    })
+  }
+
   private updatePlayers() {
     this.playerManagerService.getAllPlayers(this.teamid, this.position).subscribe({
       next: (players) => {
@@ -63,6 +85,19 @@ export class PlayerManager {
       complete: () => {
         console.log("complete");
       }
+    })
+  }
+
+  private deletePlayer(player: Player) {
+    this.playerManagerService.deletePlayer(player).subscribe({
+      next: (player) => {
+        console.log("Player deleted", player)
+        this.updatePlayers()
+      },
+      error: (error) => {
+        console.error(error);
+      },
+      complete: () => {}
     })
   }
 
